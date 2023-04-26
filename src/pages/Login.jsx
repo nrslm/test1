@@ -3,16 +3,15 @@ import Logo from "../assets/image/Group 1.png"
 import Google from '../assets/image/image 2.png'
 import { TextInput, Button, Checkbox } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
+import Auto from "../assets/image/image 3.png"
 // username: 'kminchelle',
 //         password: '0lelplR',
 function Login() {
   const [email, setEmail] = useState()
   const [pass, setPass] = useState()
   const [error, setError] = useState(false)
+  const [focused, setFocused] = useState(false)
   const navigate = useNavigate()
-
 
   const LogIn = async () => {
     try {
@@ -38,7 +37,6 @@ function Login() {
       console.log(error);
     }
   }
-  console.log(error)
 
   const ClickLogin = () => {
     LogIn()
@@ -52,6 +50,13 @@ function Login() {
   const GetPass = (value) =>{
     setError(false)
     setPass(value)
+  }
+
+  const KeyEnter = (value) =>{
+    console.log(value)
+    if(value === "Enter"){
+      LogIn()
+    }
   }
 
   return (
@@ -86,7 +91,7 @@ function Login() {
               size={"md"}
               error={error}
               onChange={(event) => GetPass(event.currentTarget.value)}
-
+              onKeyDown={(e) => KeyEnter(e.code)}
             />
 
             <div className='flex justify-between w-full items-center my-2'>
@@ -108,7 +113,7 @@ function Login() {
           </div>
         </div>
 
-        <div className='bg-cover  h-full w-5/12' style={{ backgroundImage: `url("https://ukravto.ua/files/actros_exterior_55.jpg")` }} >
+        <div className='bg-cover bg-center  h-full w-5/12' style={{ backgroundImage: `url("${Auto}")` }} >
 
         </div>
       </div>
